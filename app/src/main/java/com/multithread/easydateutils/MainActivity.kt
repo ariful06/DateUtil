@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        findViewById<TextView>(R.id.tv).text = EasyDateUtils.getMonthNameByNumber(this,1, Locale("BN"))
+        findViewById<TextView>(R.id.tv).text = EasyDateUtils.getMonthNameByNumber(this,1, Locale("hi"))
     }
 
 }

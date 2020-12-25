@@ -34,9 +34,19 @@ class EasyDateUtils {
             return getLocalizedResources(context,month,locale)
         }
 
-        fun getLocalizedResources(context: Context,month: Int, desiredLocale: Locale?): String {
+        private fun getLocalizedResources(context: Context,month: Int, desiredLocale: Locale?): String {
             return when(month){
                 1 -> getLocaleStringResource(desiredLocale,R.string.month_name_january,context)
+                2 -> getLocaleStringResource(desiredLocale,R.string.month_name_january,context)
+                3 -> getLocaleStringResource(desiredLocale,R.string.month_name_january,context)
+                4 -> getLocaleStringResource(desiredLocale,R.string.month_name_january,context)
+                5 -> getLocaleStringResource(desiredLocale,R.string.month_name_january,context)
+                6 -> getLocaleStringResource(desiredLocale,R.string.month_name_january,context)
+                7 -> getLocaleStringResource(desiredLocale,R.string.month_name_january,context)
+                8 -> getLocaleStringResource(desiredLocale,R.string.month_name_january,context)
+                9 -> getLocaleStringResource(desiredLocale,R.string.month_name_january,context)
+                10 -> getLocaleStringResource(desiredLocale,R.string.month_name_january,context)
+                11 -> getLocaleStringResource(desiredLocale,R.string.month_name_january,context)
                 else ->
                     ""
             }
@@ -54,7 +64,7 @@ class EasyDateUtils {
 
 
 
-        fun  getLocaleStringResource( requestedLocale:Locale?, resourceId:Int,  context:Context) :String{
+        private fun  getLocaleStringResource( requestedLocale:Locale?, resourceId:Int,  context:Context) :String{
             var  result = ""
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) { // use latest api
                 val  config :Configuration= Configuration(context.resources.configuration);
