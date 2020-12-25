@@ -4,11 +4,14 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
-import android.telephony.TelephonyManager
+import java.lang.Exception
 import java.text.DateFormatSymbols
 import java.util.*
 
 
+fun main(){
+    print(EasyDateUtils.getMonthNameByNumber(0))
+}
 class EasyDateUtils {
 
 
@@ -29,8 +32,8 @@ class EasyDateUtils {
 
         @JvmStatic
         fun getMonthNameByNumber(context: Context, month: Int, locale: Locale?): String? {
-
-
+            if(locale == null)
+                getMonthNameByNumber(month)
             return getLocalizedResources(context,month,locale)
         }
 
@@ -53,15 +56,18 @@ class EasyDateUtils {
         }
 
         @JvmStatic
-        open fun getMonth(month: Int): String? {
-            return DateFormatSymbols().getMonths().get(month - 1)
-        }
+        open fun getMonthNameByNumber(month: Int): String? {
+            try {
+                if (month in 1..12)
+                return DateFormatSymbols().months[month - 1]
+                else return "month number should be in 1-12"
 
-        @JvmStatic
-        fun getLocaleName(localeName: String?): Boolean {
-            return false
-        }
+            }catch (e : Exception){
+                e.message
+            }
+            return null
 
+        }
 
 
         private fun  getLocaleStringResource( requestedLocale:Locale?, resourceId:Int,  context:Context) :String{
@@ -69,7 +75,7 @@ class EasyDateUtils {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) { // use latest api
                 val  config :Configuration= Configuration(context.resources.configuration);
                 config.setLocale(requestedLocale);
-                result = context.createConfigurationContext(config).getText(resourceId).toString();
+               return context.createConfigurationContext(config).getText(resourceId).toString();
             }
             else { // support older android versions
                 var resources : Resources  = context.resources;
